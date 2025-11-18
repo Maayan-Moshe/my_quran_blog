@@ -5,10 +5,12 @@ A blog website for sharing personal impressions and reflections from reading the
 ## Features
 
 - 📖 Clean and responsive blog layout
-- 🎨 Bootstrap 5 integration for modern design
+- 🎨 Custom color theme (#3f3c32 and #d7ced5) with Quran imagery
 - 📝 Individual pages for each Surah reflection
+- 📁 Separate JSON files for each blog post
 - 🔍 Easy navigation between posts
 - 📱 Mobile-friendly responsive design
+- 🖼️ Background images on navbar, footer, and jumbotron
 
 ## Technologies Used
 
@@ -47,7 +49,10 @@ my_quran_blog/
 ├── server.js           # Main Express server
 ├── package.json        # Project dependencies
 ├── data/
-│   └── posts.json     # Blog posts data
+│   └── posts/         # Individual blog post JSON files
+│       ├── al-fatiha.json
+│       ├── al-baqarah-intro.json
+│       └── al-ikhlas.json
 ├── views/
 │   ├── index.ejs      # Home page
 │   ├── post.ejs       # Individual post page
@@ -57,25 +62,32 @@ my_quran_blog/
 │       ├── header.ejs # Header partial
 │       └── footer.ejs # Footer partial
 └── public/
-    └── css/
-        └── style.css  # Custom styles
+    ├── css/
+    │   └── style.css  # Custom styles with themed colors
+    └── images/        # Background images (quran.jpg)
 ```
 
 ## Adding New Posts
 
-To add a new blog post, edit the `data/posts.json` file and add a new entry with the following structure:
+Each blog post is stored as a separate JSON file in the `data/posts/` directory. To add a new post:
+
+1. Create a new JSON file in `data/posts/` with a descriptive filename (e.g., `surah-name.json`)
+2. Use the following structure:
 
 ```json
 {
   "id": "unique-post-id",
   "suraNumber": 1,
-  "suraName": "Surah Name",
+  "suraName": "Surah Name (Translation)",
   "title": "Post Title",
   "date": "YYYY-MM-DD",
-  "excerpt": "Brief excerpt...",
-  "content": "Full post content..."
+  "excerpt": "Brief excerpt for the homepage preview...",
+  "content": "Full post content with multiple paragraphs..."
 }
 ```
+
+3. The server will automatically load and display the new post
+4. Posts are sorted by date (newest first) on the homepage
 
 ## License
 
