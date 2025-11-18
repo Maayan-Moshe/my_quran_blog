@@ -1,10 +1,11 @@
 /* Custom styles for Quran Blog */
 
 :root {
-  --primary-color: #0d6efd;
-  --secondary-color: #6c757d;
-  --accent-color: #198754;
-  --light-bg: #f8f9fa;
+  /* Updated theme: dark primary, light secondary */
+  --primary-color: #3f3c32; /* primary text / main dark */
+  --secondary-color: #d7ced5; /* secondary background / light */
+  --accent-color: #198754; /* keep existing accent (e.g., success) */
+  --light-bg: #d7ced5; /* unify light background */
 }
 
 /* Body and Layout */
@@ -13,6 +14,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff; /* overall site background set to white */
+  color: var(--primary-color);
 }
 
 main {
@@ -30,15 +33,60 @@ main {
   vertical-align: middle;
 }
 
+/* Themed Navbar */
+.navbar {
+  background: linear-gradient(rgba(63, 60, 50, 0.85), rgba(63, 60, 50, 0.85)), url('/images/quran.jpg') center/cover !important;
+  border-bottom: 4px solid #2e2b24;
+}
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-toggler {
+  color: var(--secondary-color) !important;
+}
+.navbar .nav-link.active,
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: #ffffff !important;
+}
+.navbar .nav-link { position: relative; }
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0.3rem;
+  height: 2px; width: 0;
+  background: var(--secondary-color);
+  transition: width .3s ease;
+}
+.navbar .nav-link:hover::after,
+.navbar .nav-link:focus::after,
+.navbar .nav-link.active::after { width: 100%; }
+.navbar-toggler {
+  border-color: var(--secondary-color) !important;
+}
+.navbar-toggler-icon { filter: invert(84%) sepia(7%) saturate(160%) hue-rotate(285deg) brightness(96%) contrast(90%); }
+
 /* Jumbotron/Hero Section */
 .jumbotron {
-  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  background: linear-gradient(rgba(63, 60, 50, 0.7), rgba(63, 60, 50, 0.7)), url('/images/quran.jpg') center/cover;
   border-left: 5px solid var(--primary-color);
+  color: #ffffff;
 }
 
 .jumbotron .display-4 {
-  color: #0d47a1;
+  color: #ffffff;
   font-weight: 700;
+}
+
+.jumbotron h1, .jumbotron h2, .jumbotron h3, .jumbotron h4, .jumbotron h5, .jumbotron h6 {
+  color: #ffffff;
+}
+
+.jumbotron p, .jumbotron .lead {
+  color: #ffffff;
+}
+
+.jumbotron hr {
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Cards */
@@ -46,6 +94,8 @@ main {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: none;
   border-top: 3px solid var(--primary-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .post-card:hover {
@@ -54,7 +104,7 @@ main {
 }
 
 .card-title {
-  color: #0d47a1;
+  color: var(--primary-color);
   font-weight: 600;
 }
 
@@ -75,15 +125,63 @@ main {
   transition: all 0.3s ease;
 }
 
+.btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
 .btn-outline-primary:hover {
   transform: translateX(3px);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #ffffff; /* switched to white text */
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #2e2b24;
+  border-color: #2e2b24;
+  color: #ffffff;
+}
+
+/* Additional button variants */
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: #c9bec6;
+  color: var(--primary-color);
+}
+.btn-accent {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+.btn-accent:hover, .btn-accent:focus {
+  background-color: #146c43;
+  border-color: #146c43;
+  color: #fff;
+}
+.btn-outline-secondary {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 /* Post Content */
 .post-content {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #333;
+  color: var(--primary-color);
 }
 
 .post-content p {
@@ -102,8 +200,21 @@ footer {
   margin-top: auto;
 }
 
+footer {
+  background: linear-gradient(rgba(63, 60, 50, 0.9), rgba(63, 60, 50, 0.9)), url('/images/quran.jpg') center/cover;
+  color: var(--secondary-color);
+}
+
+footer, footer * {
+  color: var(--secondary-color) !important;
+}
+
+footer a { color: var(--secondary-color); }
+footer a:hover { color: var(--secondary-color); text-decoration: underline; }
+
 footer i.bi-heart-fill {
   animation: heartbeat 1.5s ease-in-out infinite;
+  color: var(--secondary-color);
 }
 
 @keyframes heartbeat {
@@ -137,8 +248,28 @@ footer i.bi-heart-fill {
 }
 
 .alert-info {
-  border-left-color: #0dcaf0;
-  background-color: #cff4fc;
+  border-left-color: #ffffff;
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Override remaining Bootstrap primary utilities (blue) */
+.bg-primary, .text-bg-primary {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+/* Outline primary button adjustments */
+.btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
 /* Icons */
@@ -157,6 +288,10 @@ a {
   transition: color 0.3s ease;
 }
 
-a:hover {
+a {
   color: var(--primary-color);
+}
+
+a:hover {
+  color: #2e2b24;
 }
